@@ -10,6 +10,7 @@ public:
 	MeshRenderer(Transform& t, Mesh& m);
 	void render();
 	~MeshRenderer();
+	static void MeshRenderer::renderAll(MeshRenderer* begin, MeshRenderer* end);
 private:
 	Transform& transform;
 	Mesh& mesh;
