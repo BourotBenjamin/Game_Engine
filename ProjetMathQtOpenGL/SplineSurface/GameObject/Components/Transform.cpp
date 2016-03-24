@@ -19,10 +19,21 @@ void Transform::move(const glm::vec4& offset)
 	int pos = (HEIGHT_MAP * position.x / 100 + position.y / 100);
 	if (pos != oldpos)
 	{
-		/* TODO : DO SOMETHING LIKE THIS.
-		maps[oldpos].remove(*this->gameObject);
-		maps[pos].add(*this->gameObject);
-		*/
+		int* zone = (int*)GameObject::maps[oldpos];
+		int nb = *(zone++);
+		GameObject** begin = (GameObject**)zone;
+		for (int k = 0; k < nb; k++)
+		{
+			if (begin[k] == gameObject)
+			{
+				memcpy(&begin[k], &begin[k + 1], nb - k);
+				begin[nb] = nullptr;
+				break;
+			}
+		}
+		int* zone = (int*)GameObject::maps[pos];
+		int nb = *(zone++);
+		(GameObject*)zone[nb] = this->gameObject;
 	}
 }
 

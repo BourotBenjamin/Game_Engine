@@ -18,14 +18,14 @@ void SphereCollider::update()
 		for (int j = -offsetY; j < offsetY; j++)
 		{
 			int* zone = (int*) GameObject::maps[pos + (HEIGHT_MAP * offsetX) + offsetY];
-			int nb = zone[0];
+			int nb = *(zone++);
 			if (nb > 0)
 			{
-				GameObject* begin = (GameObject*)zone[1];
+				GameObject** begin = (GameObject**)zone;
 				for (int k = 0; k < nb; k++)
 				{
 					// TODO Update ( HOW ? / Heritance )
-					this->collide((SphereCollider*) begin[k].getCollider());
+					this->collide((SphereCollider*) begin[k]->getCollider());
 				}
 
 			}
