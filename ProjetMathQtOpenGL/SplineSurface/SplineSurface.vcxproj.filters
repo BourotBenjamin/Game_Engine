@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\GameObject">
+      <UniqueIdentifier>{e9f859ba-d663-4b05-ba17-055cb52fd916}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GameObject\Components">
+      <UniqueIdentifier>{0c54f7f8-e7d1-4d8d-b9c1-8a8d24fc26dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GameObject">
+      <UniqueIdentifier>{faa9b8ba-fbe5-4824-af01-e69d3e6e2121}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GameObject\Components">
+      <UniqueIdentifier>{632d03ce-0f63-4170-befe-7b8f2dc7e536}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -66,6 +78,18 @@
     <ClCompile Include="EsgiShader.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="GameObject\Components\Transform.cpp">
+      <Filter>Fichiers sources\GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Components\RigidBody.cpp">
+      <Filter>Fichiers sources\GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Components\MeshRenderer.cpp">
+      <Filter>Fichiers sources\GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\GameObject.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyGLWidget.h">
@@ -117,6 +141,18 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="EsgiShader.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Components\Transform.h">
+      <Filter>Fichiers d%27en-tête\GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Components\RigidBody.h">
+      <Filter>Fichiers d%27en-tête\GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Components\MeshRenderer.h">
+      <Filter>Fichiers d%27en-tête\GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\GameObject.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

@@ -69,6 +69,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IntDir>$(Configuration)\Tmp</IntDir>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -86,7 +87,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)\..\Libs\glew\include;$(ProjectDir)\..\Libs\qt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\Libs\glew\include;$(ProjectDir)\..\Libs\qt\include;$(ProjectDir)\..\Libs\tinyobjloader;$(ProjectDir)\..\Libs\stb;$(ProjectDir)\..\Libs\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -102,7 +103,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)\..\Libs\glew\include;$(ProjectDir)\..\Libs\qt\include;$(ProjectDir)\..\Libs\tinyobjloader;$(ProjectDir)\..\Libs\stb;$(ProjectDir)\..\Libs\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\Libs\glew\include;$(ProjectDir)\..\Libs\qt\include;$(ProjectDir)\..\Libs\glm;$(ProjectDir)\..\Libs\tinyobjloader;$(ProjectDir)\..\Libs\stb;$(ProjectDir)\..\Libs\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -120,6 +121,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\Libs\glew\include;$(ProjectDir)\..\Libs\qt\include;$(ProjectDir)\..\Libs\tinyobjloader;$(ProjectDir)\..\Libs\stb;$(ProjectDir)\..\Libs\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -137,6 +139,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\Libs\glew\include;$(ProjectDir)\..\Libs\qt\include;$(ProjectDir)\..\Libs\tinyobjloader;$(ProjectDir)\..\Libs\stb;$(ProjectDir)\..\Libs\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -151,6 +154,10 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Courbe.cpp" />
     <ClCompile Include="EsgiShader.cpp" />
+    <ClCompile Include="GameObject\Components\MeshRenderer.cpp" />
+    <ClCompile Include="GameObject\Components\RigidBody.cpp" />
+    <ClCompile Include="GameObject\Components\Transform.cpp" />
+    <ClCompile Include="GameObject\GameObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainWidget.cpp" />
     <ClCompile Include="Mat4x4.cpp" />
@@ -170,6 +177,10 @@
     <ClInclude Include="Courbe.h" />
     <ClInclude Include="EsgiShader.h" />
     <ClInclude Include="EsgiTimer.h" />
+    <ClInclude Include="GameObject\Components\MeshRenderer.h" />
+    <ClInclude Include="GameObject\Components\RigidBody.h" />
+    <ClInclude Include="GameObject\Components\Transform.h" />
+    <ClInclude Include="GameObject\GameObject.h" />
     <ClInclude Include="MainWidget.h" />
     <ClInclude Include="Mat4x4.h" />
     <ClInclude Include="MyGLWidget.h" />
