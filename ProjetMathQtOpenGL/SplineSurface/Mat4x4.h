@@ -8,6 +8,7 @@
 #include <math.h>
 #include <cmath>
 #include <memory>
+#include <vec4.hpp>
 
 class Mat4x4
 {
@@ -29,8 +30,11 @@ public:
 
 	void identity();
 	static Mat4x4 translate(float x, float y, float z);
+	static Mat4x4 translate(const glm::vec4& vector);
 	static Mat4x4 rotate(float angle, float x, float y, float z);
+	static Mat4x4 rotate(const glm::vec4& vector);
 	static Mat4x4 scale(float x, float y, float z);
+	static Mat4x4 scale(const glm::vec4& vector);
 	void Orthographic(float L, float R, float T, float B, float N, float F);
 	void Perspective(float FOV, float width, float height, float N, float F);
 	void lookAt(Point position, Point target, Point up);

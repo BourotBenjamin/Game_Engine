@@ -86,6 +86,17 @@ Mat4x4 Mat4x4::translate(float x, float y, float z)
 	return matrix;
 }
 
+Mat4x4 Mat4x4::translate(const glm::vec4& vector)
+{
+	Mat4x4 matrix = Mat4x4();
+	matrix.identity();
+	matrix.m[12] = vector.x;
+	matrix.m[13] = vector.y;
+	matrix.m[14] = vector.z;
+
+	return matrix;
+}
+
 Mat4x4 Mat4x4::rotate(float angle, float x, float y, float z)
 {
 	Mat4x4 matrix = Mat4x4();
@@ -105,6 +116,27 @@ Mat4x4 Mat4x4::rotate(float angle, float x, float y, float z)
 	return matrix;
 }
 
+
+
+Mat4x4 Mat4x4::rotate(const glm::vec4& vector)
+{
+	Mat4x4 matrix = Mat4x4();
+	matrix.identity();
+	float cos = std::cosf(vector.w);
+	float sin = std::sinf(vector.w);
+	matrix.m[0] = vector.x * vector.x * (1 - cos) + cos;
+	matrix.m[1] = vector.x * vector.y * (1 - cos) + vector.z * sin;
+	matrix.m[2] = vector.x * vector.z * (1 - cos) - vector.y * sin;
+	matrix.m[4] = vector.y * vector.x * (1 - cos) - vector.z * sin;
+	matrix.m[5] = vector.y * vector.y * (1 - cos) + cos;
+	matrix.m[6] = vector.y * vector.z * (1 - cos) + vector.x * sin;
+	matrix.m[8] = vector.z * vector.x * (1 - cos) + vector.y * sin;
+	matrix.m[9] = vector.z * vector.y * (1 - cos) - vector.x * sin;
+	matrix.m[10] = vector.z * vector.z * (1 - cos) + cos;
+
+	return matrix;
+}
+
 //void Mat4x4::rotate(Quaternion& q)
 //{
 //	(*this) *= q.to_mat4();
@@ -117,6 +149,16 @@ Mat4x4 Mat4x4::scale(float x, float y, float z)
 	matrix.m[0] = x;
 	matrix.m[5] = y;
 	matrix.m[10] = z;
+
+	return matrix;
+}
+Mat4x4 Mat4x4::scale(const glm::vec4& vector)
+{
+	Mat4x4 matrix = Mat4x4();
+	matrix.identity();
+	matrix.m[0] = vector.x;
+	matrix.m[5] = vector.y;
+	matrix.m[10] = vector.z;
 
 	return matrix;
 }
