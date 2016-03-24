@@ -4,7 +4,7 @@
 #include "../../Mat4x4.h"
 #include <gtc/quaternion.hpp>
 
-class GameObject{};
+class GameObject;
 class Transform
 {
 public:

@@ -1,4 +1,4 @@
-#pragma once
+
 #include "Components/MeshRenderer.h"
 #include "Components/RigidBody.h"
 #include "Components/Transform.h"

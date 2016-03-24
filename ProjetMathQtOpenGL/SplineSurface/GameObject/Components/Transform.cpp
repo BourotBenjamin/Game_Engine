@@ -31,9 +31,10 @@ void Transform::move(const glm::vec4& offset)
 				break;
 			}
 		}
-		int* zone = (int*)GameObject::maps[pos];
-		int nb = *(zone++);
-		(GameObject*)zone[nb] = this->gameObject;
+		zone = (int*)GameObject::maps[pos];
+		nb = *(zone++);
+		begin = (GameObject**)zone;
+		begin[nb] = this->gameObject;
 	}
 }
 

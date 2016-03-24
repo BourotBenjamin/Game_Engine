@@ -3,7 +3,7 @@
 #include "Transform.h"
 #include "RigidBody.h"
 
-class GameObject{};
+class GameObject;
 
 class Collider
 {
