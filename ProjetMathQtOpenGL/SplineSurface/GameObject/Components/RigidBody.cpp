@@ -16,6 +16,11 @@ void RigidBody::update()
 	this->transform.move(this->velocity);
 }
 
+void RigidBody::collide(const glm::vec4& direction)
+{
+	this->velocity -= direction;
+}
+
 void RigidBody::updateAll(RigidBody* begin, RigidBody* end)
 {
 	while (begin != end)

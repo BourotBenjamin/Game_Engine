@@ -7,6 +7,7 @@ public:
 	RigidBody(Transform& transform);
 	void update();
 	static void updateAll(RigidBody* begin, RigidBody* end);
+	void collide(const glm::vec4& direction);
 	~RigidBody();
 private:
 	glm::vec4 velocity;
