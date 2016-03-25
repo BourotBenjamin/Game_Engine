@@ -12,9 +12,9 @@ void MeshRenderer::render()
 }
 
 
-void MeshRenderer::renderAll(MeshRenderer* begin, MeshRenderer* end)
+void MeshRenderer::renderAll(MeshRenderer* begin, int size)
 {
-	while (begin != end)
+	for (int i = 0; i < size; i++)
 	{
 		begin->render();
 		begin++;

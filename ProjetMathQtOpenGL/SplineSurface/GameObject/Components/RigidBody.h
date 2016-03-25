@@ -6,7 +6,7 @@ class RigidBody
 public:
 	RigidBody(Transform& transform);
 	void update();
-	static void updateAll(RigidBody* begin, RigidBody* end);
+	static void updateAll(RigidBody* begin, int size);
 	void collide(const glm::vec4& direction);
 	~RigidBody();
 private:

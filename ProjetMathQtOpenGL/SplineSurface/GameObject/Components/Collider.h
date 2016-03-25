@@ -2,6 +2,7 @@
 #include <vec4.hpp>
 #include "Transform.h"
 #include "RigidBody.h"
+#include "../../World.h"
 
 class GameObject;
 

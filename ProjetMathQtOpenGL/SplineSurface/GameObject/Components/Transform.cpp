@@ -13,13 +13,12 @@ Transform::~Transform()
 
 void Transform::move(const glm::vec4& offset)
 {
-	int HEIGHT_MAP = 100;
-	int oldpos = (HEIGHT_MAP * position.x / 100 + position.y / 100);
+	int oldpos = (World::ZONES_Y * position.x / 100 + position.y / 100);
 	this->position += offset;
-	int pos = (HEIGHT_MAP * position.x / 100 + position.y / 100);
+	int pos = (World::ZONES_Y * position.x / 100 + position.y / 100);
 	if (pos != oldpos)
 	{
-		int* zone = (int*)GameObject::maps[oldpos];
+		int* zone = (int*)World::getMaps()[oldpos];
 		int nb = *(zone++);
 		GameObject** begin = (GameObject**)zone;
 		for (int k = 0; k < nb; k++)
@@ -31,7 +30,7 @@ void Transform::move(const glm::vec4& offset)
 				break;
 			}
 		}
-		zone = (int*)GameObject::maps[pos];
+		zone = (int*)World::getMaps()[pos];
 		nb = *(zone++);
 		begin = (GameObject**)zone;
 		begin[nb] = this->gameObject;

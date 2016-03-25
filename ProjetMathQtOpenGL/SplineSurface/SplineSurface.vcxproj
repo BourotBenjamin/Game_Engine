@@ -154,8 +154,11 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Courbe.cpp" />
     <ClCompile Include="EsgiShader.cpp" />
+    <ClCompile Include="GameObject\Components\Collider.cpp" />
+    <ClCompile Include="GameObject\Components\Mesh.cpp" />
     <ClCompile Include="GameObject\Components\MeshRenderer.cpp" />
     <ClCompile Include="GameObject\Components\RigidBody.cpp" />
+    <ClCompile Include="GameObject\Components\SphereCollider.cpp" />
     <ClCompile Include="GameObject\Components\Transform.cpp" />
     <ClCompile Include="GameObject\GameObject.cpp" />
     <ClCompile Include="main.cpp" />
@@ -170,6 +173,7 @@
     <ClCompile Include="SurfaceBezier.cpp" />
     <ClCompile Include="SurfaceFromSpline.cpp" />
     <ClCompile Include="SurfaceSimpleExtrude.cpp" />
+    <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bezier.h" />
@@ -177,8 +181,11 @@
     <ClInclude Include="Courbe.h" />
     <ClInclude Include="EsgiShader.h" />
     <ClInclude Include="EsgiTimer.h" />
+    <ClInclude Include="GameObject\Components\Collider.h" />
+    <ClInclude Include="GameObject\Components\Mesh.h" />
     <ClInclude Include="GameObject\Components\MeshRenderer.h" />
     <ClInclude Include="GameObject\Components\RigidBody.h" />
+    <ClInclude Include="GameObject\Components\SphereCollider.h" />
     <ClInclude Include="GameObject\Components\Transform.h" />
     <ClInclude Include="GameObject\GameObject.h" />
     <ClInclude Include="MainWidget.h" />
@@ -193,6 +200,7 @@
     <ClInclude Include="SurfaceBezier.h" />
     <ClInclude Include="SurfaceFromSpline.h" />
     <ClInclude Include="SurfaceSimpleExtrude.h" />
+    <ClInclude Include="World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

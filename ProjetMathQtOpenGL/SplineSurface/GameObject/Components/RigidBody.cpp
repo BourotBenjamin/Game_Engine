@@ -21,9 +21,9 @@ void RigidBody::collide(const glm::vec4& direction)
 	this->velocity -= direction;
 }
 
-void RigidBody::updateAll(RigidBody* begin, RigidBody* end)
+void RigidBody::updateAll(RigidBody* begin, int size)
 {
-	while (begin != end)
+	for (int i = 0; i < size; i++)
 	{
 		begin->update();
 		begin++;

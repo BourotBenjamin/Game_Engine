@@ -2,6 +2,7 @@
 #include <glm.hpp>
 #include <vector>
 #include "../../Mat4x4.h"
+#include "../../World.h"
 #include <gtc/quaternion.hpp>
 
 class GameObject;

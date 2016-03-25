@@ -11,7 +11,6 @@ public:
 	//GameObject(Transform* transform, MeshRenderer* meshRenderer, RigidBody* rigidBody, Collider* collider, GameObject* parent);
 	GameObject::GameObject(Transform* transform, MeshRenderer* meshRenderer, RigidBody* rigidBody, Collider* collider);
 	~GameObject();
-	static void** maps;
 	const Collider* getCollider();
 private:
 	Transform* transform;
