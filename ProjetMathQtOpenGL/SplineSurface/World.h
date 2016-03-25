@@ -3,10 +3,8 @@
 class World
 {
 public:
-	World();
-	~World();
-	int* getMaps() { return new int; };
-	void setMaps(int* maps) { World::maps = maps;  };
+	int* getMaps() { return maps; };
+	void setMaps(int* maps) { this->maps = maps;  };
 	const int WIDTH_ZONE = 100, HEIGHT_ZONE = 100, ZONES_X = 100, ZONES_Y = 100, NB_MAX_OBJ = 100;
 private:
 	int* maps;

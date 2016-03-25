@@ -194,7 +194,6 @@ void MyGLWidget::initializeGL()
 
 void MyGLWidget::initScene(GLuint program)
 {
-	memoryManager = MemoryManager();
 	threadPool = new ThreadPool(std::thread::hardware_concurrency());
 	std::string file("rock.obj");
 	AllocatorVector<World> worlds(memoryManager, 1);
@@ -205,20 +204,20 @@ void MyGLWidget::initScene(GLuint program)
 	AllocatorVector<RigidBody> rigidBodies(memoryManager, 100);
 	AllocatorVector<SphereCollider> colliders(memoryManager, 100);
 	AllocatorVector<Mesh> meshs(memoryManager, 100);
-	AllocatorVector<MeshRenderer> meshRenderers(memoryManager, 100);
+	meshRenderers = new AllocatorVector<MeshRenderer>(memoryManager, 100);
 	AllocatorVector<GameObject> gameObjects(memoryManager, 100);
 	for (int i = 0; i < 100; i++)
 	{
-		Transform* tr = transforms.allocation(*w, rand() % 2000, rand() % 2000, rand() % 2000);
-		RigidBody* rb = rigidBodies.allocation(*tr);
-		SphereCollider* col = colliders.allocation(*tr, *rb, *w);
+		Transform* tr = transforms.allocation(w, rand() % 2000, rand() % 2000, rand() % 2000);
+		RigidBody* rb = rigidBodies.allocation(tr);
+		SphereCollider* col = colliders.allocation(tr, rb, w);
 		Mesh* m = meshs.allocation(program, file);
-		MeshRenderer* r = meshRenderers.allocation(*tr, *m);
+		MeshRenderer* r = meshRenderers->allocation(tr, m);
 		GameObject* go = gameObjects.allocation(tr, r, rb, (Collider*) col);
 	}
-	firstRigidBody = rigidBodies.getFirst();
-	firstCollider = (Collider*) colliders.getFirst();
-	firstMeshRenderer = meshRenderers.getFirst();
+	firstRigidBody = (int*)rigidBodies.getFirst();
+	firstCollider = (int*)colliders.getFirst();
+	firstMeshRenderer = (int*)meshRenderers->getFirst();
 }
 
 void MyGLWidget::updateWidget(float deltaTime)
@@ -226,11 +225,11 @@ void MyGLWidget::updateWidget(float deltaTime)
 	// stock first
 	threadPool->assign<RigidBody>(firstRigidBody,100, RigidBody::updateAll);
 	threadPool->assign<Collider>(firstCollider, 100, Collider::updateAll);
-	/*
 	cam.deplacer(buffKey, xRel, yRel, deltaTime);
 	xRel = 0;
 	yRel = 0;
 
+	/*
 	auto listeSpline = path->getPointInCourbe();
 	Point p;
 	if (!down)
@@ -338,7 +337,7 @@ void MyGLWidget::paintGL()
 	/*glEnable(GL_BLEND);
 	glBlendEquation(GL_FUNC_ADD);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);*/
-
+	MeshRenderer * test = (MeshRenderer*)firstMeshRenderer;
 	threadPool->assign<MeshRenderer>(firstMeshRenderer, 100, MeshRenderer::renderAll);
 	/*
 	program = billboard->getProgramID();

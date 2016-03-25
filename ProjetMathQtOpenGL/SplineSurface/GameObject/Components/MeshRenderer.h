@@ -7,12 +7,12 @@
 class MeshRenderer
 {
 public:
-	MeshRenderer(Transform& t, Mesh& m);
+	MeshRenderer(Transform* t, Mesh* m);
 	void render();
 	~MeshRenderer();
-	static void MeshRenderer::renderAll(MeshRenderer* begin, int size);
+	static void MeshRenderer::renderAll(void* begin, int size);
 private:
-	Transform& transform;
-	Mesh& mesh;
+	Transform* transform;
+	Mesh* mesh;
 };
 

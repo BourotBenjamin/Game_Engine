@@ -9,14 +9,14 @@ class GameObject;
 class Collider
 {
 public:
-	Collider(Transform& transform, RigidBody& rigidBody, World& world);
+	Collider(Transform* transform, RigidBody* rigidBody, World* world);
 	virtual void update() = 0;
-	static void Collider::updateAll(Collider* begin, int size);
+	static void Collider::updateAll(void* begin, int size);
 	~Collider();
 protected:
 	glm::vec4 offset;
-	Transform& transform;
-	RigidBody& rigidBody;
-	World& world;
+	Transform* transform;
+	RigidBody* rigidBody;
+	World* world;
 };
 

@@ -2,21 +2,21 @@
 #include "../GameObject.h"
 
 
-SphereCollider::SphereCollider(Transform& t, RigidBody& r, World& w) :Collider(t, r, w)
+SphereCollider::SphereCollider(Transform* t, RigidBody* r, World* w) :Collider(t, r, w)
 {
 	radius = 5.0f;
 }
 
 void SphereCollider::update()
 {
-	int pos = transform.getMapPos();
-	int offsetX = radius / world.WIDTH_ZONE + 1;
-	int offsetY = radius / world.HEIGHT_ZONE + 1;
+	int pos = transform->getMapPos();
+	int offsetX = radius / world->WIDTH_ZONE + 1;
+	int offsetY = radius / world->HEIGHT_ZONE + 1;
 	for (int i = -offsetX; i < offsetX; i++)
 	{
 		for (int j = -offsetY; j < offsetY; j++)
 		{
-			int* zone = (int*)world.getMaps()[pos + (world.ZONES_Y * offsetX) + offsetY];
+			int* zone = (int*)world->getMaps() + (pos + (world->ZONES_Y * offsetX) + offsetY);
 			int nb = *(zone++);
 			if (nb > 0)
 			{
@@ -35,9 +35,9 @@ void SphereCollider::update()
 
 void SphereCollider::collide(const SphereCollider* collider)
 {
-	if (Transform::getDistSquare(transform.getPosition(), collider->transform.getPosition()) < (collider->radius + radius) * (collider->radius + radius))
+	if (Transform::getDistSquare(transform->getPosition(), collider->transform->getPosition()) < (collider->radius + radius) * (collider->radius + radius))
 	{
-		rigidBody.collide(collider->transform.getPosition() - transform.getPosition());
+		rigidBody->collide(collider->transform->getPosition() - transform->getPosition());
 	}
 }
 

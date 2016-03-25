@@ -107,10 +107,11 @@ protected:
 	void initScene(GLuint program);
 	MemoryManager memoryManager;
 	World* w;
-	RigidBody* firstRigidBody;
-	MeshRenderer* firstMeshRenderer;
-	Collider* firstCollider;
+	int* firstRigidBody;
+	int* firstMeshRenderer;
+	int* firstCollider;
 	ThreadPool* threadPool;
+	AllocatorVector<MeshRenderer>* meshRenderers;
 	
 
 public:

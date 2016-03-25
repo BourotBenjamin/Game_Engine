@@ -10,8 +10,8 @@ class GameObject;
 class Transform
 {
 public:
-	Transform(World& world);
-	Transform(World& world, float x, float y, float z);
+	Transform(World* world);
+	Transform(World* world, float x, float y, float z);
 	~Transform();
 	void move(const glm::vec4& offset);
 	Mat4x4 getMatrix();
@@ -24,7 +24,7 @@ private:
 	glm::vec4 scale;
 	glm::vec4 rotation;
 	GameObject* gameObject;
-	World& world;
+	World* world;
 };
 #endif
 

@@ -44,7 +44,7 @@ public:
 	}
 
 	template<class R>
-	void assign(R * ptr, uint32_t size, std::function<void(int, int)> f)
+	void assign(int * ptr, uint32_t size, std::function<void(void*, int)> f)
 	{
 		uint32_t nbTask = size / workers.size();
 		for (size_t i = 0; i < workers.size(); ++i) {
@@ -59,11 +59,12 @@ public:
 			enqueue(job);
 
 			//std::thread workers[i](f);
-			ptr += nbTask;
+			ptr += nbTask * sizeof(R) / sizeof(int);
 		}
 		while (completedJobs != workers.size()) {
 			std::this_thread::yield();
 		}
+		completedJobs = 0;
 	}
 
 	~ThreadPool()

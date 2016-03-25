@@ -4,13 +4,13 @@
 class RigidBody
 {
 public:
-	RigidBody(Transform& transform);
+	RigidBody(Transform* transform);
 	void update();
-	static void updateAll(RigidBody* begin, int size);
+	static void updateAll(void* begin, int size);
 	void collide(const glm::vec4& direction);
 	~RigidBody();
 private:
 	glm::vec4 velocity;
-	Transform& transform;
+	Transform* transform;
 };
 
