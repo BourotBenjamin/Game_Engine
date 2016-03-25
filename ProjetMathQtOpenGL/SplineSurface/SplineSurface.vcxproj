@@ -173,6 +173,7 @@
     <ClCompile Include="SurfaceBezier.cpp" />
     <ClCompile Include="SurfaceFromSpline.cpp" />
     <ClCompile Include="SurfaceSimpleExtrude.cpp" />
+    <ClCompile Include="worker.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +203,8 @@
     <ClInclude Include="SurfaceBezier.h" />
     <ClInclude Include="SurfaceFromSpline.h" />
     <ClInclude Include="SurfaceSimpleExtrude.h" />
+    <ClInclude Include="threadPool.h" />
+    <ClInclude Include="worker.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

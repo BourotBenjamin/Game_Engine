@@ -9,3 +9,12 @@ Collider::Collider(Transform& transform, RigidBody& rigidBody, World& world) : t
 Collider::~Collider()
 {
 }
+
+void Collider::updateAll(Collider* begin, int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		begin->update();
+		begin++;
+	}
+}

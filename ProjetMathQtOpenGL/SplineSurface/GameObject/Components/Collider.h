@@ -11,6 +11,7 @@ class Collider
 public:
 	Collider(Transform& transform, RigidBody& rigidBody, World& world);
 	virtual void update() = 0;
+	static void Collider::updateAll(Collider* begin, int size);
 	~Collider();
 protected:
 	glm::vec4 offset;

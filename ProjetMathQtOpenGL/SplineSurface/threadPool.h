@@ -23,7 +23,7 @@ struct Job
 // the actual thread pool
 class ThreadPool {
 public:
-	ThreadPool(size_t threads, int sizeOfPool)
+	ThreadPool(size_t threads)
 		: stop(false)
 	{
 		for (size_t i = 0; i<threads; ++i)
@@ -59,7 +59,7 @@ public:
 			enqueue(job);
 
 			//std::thread workers[i](f);
-			ptr += nbtask;
+			ptr += nbTask;
 		}
 		while (completedJobs != workers.size()) {
 			std::this_thread::yield();

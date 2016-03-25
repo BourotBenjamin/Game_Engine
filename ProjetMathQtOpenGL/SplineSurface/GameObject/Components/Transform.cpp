@@ -10,7 +10,7 @@ Transform::Transform(World& world, float x, float y, float z) : world(world), po
 
 
 Transform::~Transform()
-{(
+{
 }
 
 

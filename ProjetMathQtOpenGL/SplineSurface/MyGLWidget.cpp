@@ -186,7 +186,7 @@ void MyGLWidget::initializeGL()
 	particuleEmitter = std::unique_ptr<Objet>(new Objet("wall.obj", 100, *updateParticules, "ps_update.vs", "ps_update.fs", "ps_update.gs"));
 	*/
 
-initScene(program);
+	initScene(program);
 
 	timer.Begin();
 	
@@ -195,16 +195,17 @@ initScene(program);
 void MyGLWidget::initScene(GLuint program)
 {
 	memoryManager = MemoryManager();
+	threadPool = new ThreadPool(std::thread::hardware_concurrency());
 	std::string file("rock.obj");
 	AllocatorVector<World> worlds(memoryManager, 1);
 	w = worlds.allocation();
 	AllocatorVector<int> maps(memoryManager, w->ZONES_X * w->ZONES_Y + w->NB_MAX_OBJ * 10);
 	w->setMaps(maps.allocation());
 	AllocatorVector<Transform> transforms(memoryManager, 100);
-	rigidBodies = AllocatorVector<RigidBody>(memoryManager, 100);
+	AllocatorVector<RigidBody> rigidBodies(memoryManager, 100);
 	AllocatorVector<SphereCollider> colliders(memoryManager, 100);
 	AllocatorVector<Mesh> meshs(memoryManager, 100);
-	meshRenderers = AllocatorVector<MeshRenderer>(memoryManager, 100);
+	AllocatorVector<MeshRenderer> meshRenderers(memoryManager, 100);
 	AllocatorVector<GameObject> gameObjects(memoryManager, 100);
 	for (int i = 0; i < 100; i++)
 	{
@@ -215,12 +216,16 @@ void MyGLWidget::initScene(GLuint program)
 		MeshRenderer* r = meshRenderers.allocation(*tr, *m);
 		GameObject* go = gameObjects.allocation(tr, r, rb, (Collider*) col);
 	}
+	firstRigidBody = rigidBodies.getFirst();
+	firstCollider = (Collider*) colliders.getFirst();
+	firstMeshRenderer = meshRenderers.getFirst();
 }
 
 void MyGLWidget::updateWidget(float deltaTime)
 {
-	threadPool.assign<RigidBody>(rigidBodies.getFirst(), rigidBodies.getCapacity(), RigidBody::updateAll);
-	threadPool.assign<MeshRenderer>(meshRenderers.getFirst(), meshRenderers.getCapacity(), MeshRenderer::renderAll);
+	// stock first
+	threadPool->assign<RigidBody>(firstRigidBody,100, RigidBody::updateAll);
+	threadPool->assign<Collider>(firstCollider, 100, Collider::updateAll);
 	/*
 	cam.deplacer(buffKey, xRel, yRel, deltaTime);
 	xRel = 0;
@@ -275,7 +280,7 @@ void MyGLWidget::updateWidget(float deltaTime)
 
 void MyGLWidget::paintGL()
 {	
-	
+	/*
 	glViewport(0, 0, width(), height());
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -321,7 +326,7 @@ void MyGLWidget::paintGL()
         renderScene(program);
 		glDisable(GL_CULL_FACE);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	
+	*/
 
 	// 2. Render scene as normal
     glViewport(0, 0, width(), height());
@@ -334,6 +339,8 @@ void MyGLWidget::paintGL()
 	glBlendEquation(GL_FUNC_ADD);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);*/
 
+	threadPool->assign<MeshRenderer>(firstMeshRenderer, 100, MeshRenderer::renderAll);
+	/*
 	program = billboard->getProgramID();
 	glUseProgram(program);
 	//particuleEmitter->renderBillBoardParticules(program);
@@ -355,7 +362,7 @@ void MyGLWidget::paintGL()
 	glUseProgram(program);
 	skybox->renderCubeMap(program);
 
-
+	*/
 	//timer.End();
 	//std::cout << timer.GetElapsedTime() << "\n";
 }
