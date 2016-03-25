@@ -2,7 +2,7 @@
 #include "../GameObject.h"
 
 
-SphereCollider::SphereCollider(Transform& t, RigidBody& r) :Collider(t, r)
+SphereCollider::SphereCollider(Transform& t, RigidBody& r, World& w) :Collider(t, r, w)
 {
 	radius = 5.0f;
 }
@@ -10,13 +10,13 @@ SphereCollider::SphereCollider(Transform& t, RigidBody& r) :Collider(t, r)
 void SphereCollider::update()
 {
 	int pos = transform.getMapPos();
-	int offsetX = radius / World::WIDTH_ZONE + 1;
-	int offsetY = radius / World::HEIGHT_ZONE + 1;
+	int offsetX = radius / world.WIDTH_ZONE + 1;
+	int offsetY = radius / world.HEIGHT_ZONE + 1;
 	for (int i = -offsetX; i < offsetX; i++)
 	{
 		for (int j = -offsetY; j < offsetY; j++)
 		{
-			int* zone = (int*)World::getMaps()[pos + (World::ZONES_Y * offsetX) + offsetY];
+			int* zone = (int*)world.getMaps()[pos + (world.ZONES_Y * offsetX) + offsetY];
 			int nb = *(zone++);
 			if (nb > 0)
 			{

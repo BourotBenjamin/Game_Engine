@@ -4,7 +4,7 @@
 class SphereCollider : Collider
 {
 public:
-	SphereCollider(Transform& transform, RigidBody& r);
+	SphereCollider(Transform& transform, RigidBody& r, World& world);
 	void update();
 	~SphereCollider();
 private:

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TRANSFORM_H
+#define TRANSFORM_H
 #include <glm.hpp>
 #include <vector>
 #include "../../Mat4x4.h"
@@ -9,7 +10,7 @@ class GameObject;
 class Transform
 {
 public:
-	Transform();
+	Transform(World& world);
 	~Transform();
 	void move(const glm::vec4& offset);
 	Mat4x4 getMatrix();
@@ -22,5 +23,7 @@ private:
 	glm::vec4 scale;
 	glm::vec4 rotation;
 	GameObject* gameObject;
+	World& world;
 };
+#endif
 
