@@ -87,8 +87,20 @@
     <ClCompile Include="GameObject\Components\MeshRenderer.cpp">
       <Filter>Fichiers sources\GameObject\Components</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject\GameObject.cpp">
+    <ClCompile Include="World.cpp">
       <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Components\SphereCollider.cpp">
+      <Filter>Fichiers sources\GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Components\Collider.cpp">
+      <Filter>Fichiers sources\GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\GameObject.cpp">
+      <Filter>Fichiers sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Components\Mesh.cpp">
+      <Filter>Fichiers sources\GameObject\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -152,8 +164,26 @@
     <ClInclude Include="GameObject\Components\MeshRenderer.h">
       <Filter>Fichiers d%27en-tête\GameObject\Components</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject\GameObject.h">
+    <ClInclude Include="World.h">
       <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="AllocatorVector.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="memPool.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\GameObject.h">
+      <Filter>Fichiers d%27en-tête\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Components\Collider.h">
+      <Filter>Fichiers d%27en-tête\GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Components\SphereCollider.h">
+      <Filter>Fichiers d%27en-tête\GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Components\Mesh.h">
+      <Filter>Fichiers d%27en-tête\GameObject\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
