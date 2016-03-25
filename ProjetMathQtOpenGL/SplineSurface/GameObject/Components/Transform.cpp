@@ -1,13 +1,16 @@
 #include "Transform.h"
 #include "../GameObject.h"
 
-Transform::Transform(World& world) : world(world)
+Transform::Transform(World& world) : world(world), position(glm::vec4(0))
+{
+}
+Transform::Transform(World& world, float x, float y, float z) : world(world), position(glm::vec4(x,y,z,0))
 {
 }
 
 
 Transform::~Transform()
-{
+{(
 }
 
 

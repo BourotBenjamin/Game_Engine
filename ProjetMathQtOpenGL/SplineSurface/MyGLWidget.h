@@ -16,7 +16,9 @@
 #include "EsgiShader.h"
 #include "AllocatorVector.h"
 #include "World.h"
-#include "GameObject/Components/Transform.h"
+#include "GameObject/GameObject.h"
+#include "GameObject/Components/SphereCollider.h"
+#include "threadPool.h"
 
 const GLuint SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;
 
@@ -104,6 +106,10 @@ protected:
 	bool event(QEvent *e);
 	void initScene(GLuint program);
 	MemoryManager memoryManager;
+	World* w;
+	AllocatorVector<RigidBody> rigidBodies;
+	AllocatorVector<MeshRenderer> meshRenderers;
+	ThreadPool threadPool;
 	
 
 public:

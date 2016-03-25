@@ -11,6 +11,7 @@ class Transform
 {
 public:
 	Transform(World& world);
+	Transform(World& world, float x, float y, float z);
 	~Transform();
 	void move(const glm::vec4& offset);
 	Mat4x4 getMatrix();

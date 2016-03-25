@@ -195,17 +195,33 @@ initScene(program);
 void MyGLWidget::initScene(GLuint program)
 {
 	memoryManager = MemoryManager();
+	std::string file("rock.obj");
 	AllocatorVector<World> worlds(memoryManager, 1);
-	World* w = worlds.allocation();
+	w = worlds.allocation();
 	AllocatorVector<int> maps(memoryManager, w->ZONES_X * w->ZONES_Y + w->NB_MAX_OBJ * 10);
 	w->setMaps(maps.allocation());
 	AllocatorVector<Transform> transforms(memoryManager, 100);
-	transforms.allocation(*w);
+	rigidBodies = AllocatorVector<RigidBody>(memoryManager, 100);
+	AllocatorVector<SphereCollider> colliders(memoryManager, 100);
+	AllocatorVector<Mesh> meshs(memoryManager, 100);
+	meshRenderers = AllocatorVector<MeshRenderer>(memoryManager, 100);
+	AllocatorVector<GameObject> gameObjects(memoryManager, 100);
+	for (int i = 0; i < 100; i++)
+	{
+		Transform* tr = transforms.allocation(*w, rand() % 2000, rand() % 2000, rand() % 2000);
+		RigidBody* rb = rigidBodies.allocation(*tr);
+		SphereCollider* col = colliders.allocation(*tr, *rb, *w);
+		Mesh* m = meshs.allocation(program, file);
+		MeshRenderer* r = meshRenderers.allocation(*tr, *m);
+		GameObject* go = gameObjects.allocation(tr, r, rb, (Collider*) col);
+	}
 }
 
 void MyGLWidget::updateWidget(float deltaTime)
 {
-
+	threadPool.assign<RigidBody>(rigidBodies.getFirst(), rigidBodies.getCapacity(), RigidBody::updateAll);
+	threadPool.assign<MeshRenderer>(meshRenderers.getFirst(), meshRenderers.getCapacity(), MeshRenderer::renderAll);
+	/*
 	cam.deplacer(buffKey, xRel, yRel, deltaTime);
 	xRel = 0;
 	yRel = 0;
@@ -252,7 +268,7 @@ void MyGLWidget::updateWidget(float deltaTime)
 
 
 
-	cam.lookAt(modelView);
+	cam.lookAt(modelView);*/
 }
 
 
