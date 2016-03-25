@@ -5,7 +5,6 @@
 #include <vector>
 #include "memPool.h"
 
-
 template<class R>
 class AllocatorVector
 {
@@ -18,7 +17,8 @@ public:
 			alive.push_back(false);
 	}
 
-	void * allocation()
+	template <typename... Args>
+	R * allocation(Args... args)
 	{
 		int i = 0;
 		while (alive[i] == true)
@@ -26,7 +26,7 @@ public:
 		if (i == capacity)
 			return nullptr;
 
-		new(R)(ptr + i);
+		new(ptr + i) R(args...);
 		alive[i] = true;
 		return ptr + i;
 

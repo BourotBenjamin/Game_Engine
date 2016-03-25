@@ -14,6 +14,9 @@
 #include "Quaternion.h"
 #include "EsgiTimer.h"
 #include "EsgiShader.h"
+#include "AllocatorVector.h"
+#include "World.h"
+#include "GameObject/Components/Transform.h"
 
 const GLuint SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;
 
@@ -99,6 +102,8 @@ protected:
 	void mouseReleaseEvent(QMouseEvent * e);
 	void resizeEvent(QResizeEvent *e);
 	bool event(QEvent *e);
+	void initScene(GLuint program);
+	MemoryManager memoryManager;
 	
 
 public:

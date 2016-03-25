@@ -158,8 +158,8 @@
     <ClCompile Include="GameObject\Components\Mesh.cpp" />
     <ClCompile Include="GameObject\Components\MeshRenderer.cpp" />
     <ClCompile Include="GameObject\Components\RigidBody.cpp" />
-    <ClCompile Include="GameObject\Components\SphereCollider.cpp" />
     <ClCompile Include="GameObject\Components\Transform.cpp" />
+    <ClCompile Include="GameObject\Components\SphereCollider.cpp" />
     <ClCompile Include="GameObject\GameObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainWidget.cpp" />
@@ -176,6 +176,7 @@
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AllocatorVector.h" />
     <ClInclude Include="Bezier.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Courbe.h" />
@@ -185,11 +186,12 @@
     <ClInclude Include="GameObject\Components\Mesh.h" />
     <ClInclude Include="GameObject\Components\MeshRenderer.h" />
     <ClInclude Include="GameObject\Components\RigidBody.h" />
-    <ClInclude Include="GameObject\Components\SphereCollider.h" />
     <ClInclude Include="GameObject\Components\Transform.h" />
+    <ClInclude Include="GameObject\Components\SphereCollider.h" />
     <ClInclude Include="GameObject\GameObject.h" />
     <ClInclude Include="MainWidget.h" />
     <ClInclude Include="Mat4x4.h" />
+    <ClInclude Include="memPool.h" />
     <ClInclude Include="MyGLWidget.h" />
     <ClInclude Include="Objet.h" />
     <ClInclude Include="Point.h" />

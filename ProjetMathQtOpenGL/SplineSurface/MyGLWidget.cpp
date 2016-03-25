@@ -25,13 +25,14 @@ void MyGLWidget::initializeGL()
 	yRel = 0;
 
 	shad = std::unique_ptr<Shader>(new Shader("VertexObj.vs", "FragmentObj.fs", "", ""));
+	/*
 	skyboxShader = std::unique_ptr<Shader>(new Shader("skybox.vs", "skybox.fs", "", ""));
 	normalMap = std::unique_ptr<Shader>(new Shader("normalMap.vs", "normalMap.fs", "", ""));
 	shadowDepth = std::unique_ptr<Shader>(new Shader("depth.vs", "depth.fs", "", ""));
 	lampshad = std::unique_ptr<Shader>(new Shader("lamp.vs", "lamp.fs", "", ""));
 	updateParticules = std::unique_ptr<EsgiShader>(new EsgiShader());//"ps_update.vs", "ps_update.fs", "ps_update.gs", ""));
 	billboard = std::unique_ptr<Shader>(new Shader("billboard.vs", "billboard.fs", "billboard.gs", ""));
-
+	*/
 	rightClick = false;
 	modelView.identity();
 
@@ -55,7 +56,7 @@ void MyGLWidget::initializeGL()
 	auto blockIndex = glGetUniformBlockIndex(program, "ViewProj");
 	glUniformBlockBinding(program, blockIndex, 0);
 	glUseProgram(0);
-
+	/*
 	program = normalMap->getProgramID();
 	glUseProgram(program);
 	blockIndex = glGetUniformBlockIndex(program, "ViewProj");
@@ -113,7 +114,7 @@ void MyGLWidget::initializeGL()
     glDrawBuffer(GL_NONE);
     glReadBuffer(GL_NONE);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
+	
 	cat = std::unique_ptr<Objet>(new Objet("cat.obj"));
 	cyborg = std::unique_ptr<Objet>(new Objet("cyborg.obj"));
 
@@ -183,10 +184,23 @@ void MyGLWidget::initializeGL()
 
 
 	particuleEmitter = std::unique_ptr<Objet>(new Objet("wall.obj", 100, *updateParticules, "ps_update.vs", "ps_update.fs", "ps_update.gs"));
+	*/
 
+initScene(program);
 
 	timer.Begin();
 	
+}
+
+void MyGLWidget::initScene(GLuint program)
+{
+	memoryManager = MemoryManager();
+	AllocatorVector<World> worlds(memoryManager, 1);
+	World* w = worlds.allocation();
+	AllocatorVector<int> maps(memoryManager, w->ZONES_X * w->ZONES_Y + w->NB_MAX_OBJ * 10);
+	w->setMaps(maps.allocation());
+	AllocatorVector<Transform> transforms(memoryManager, 100);
+	transforms.allocation(*w);
 }
 
 void MyGLWidget::updateWidget(float deltaTime)

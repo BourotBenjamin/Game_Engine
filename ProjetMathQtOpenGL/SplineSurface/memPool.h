@@ -8,10 +8,10 @@ static const uint64_t GIGABYTE = 1073741824;
 
 struct memoryBlock
 {
-	void * ptr;
+	int * ptr;
 	uint64_t cap;
 
-	memoryBlock(void * p, uint64_t cap) : ptr(p), cap(cap){}
+	memoryBlock(int * p, uint64_t cap) : ptr(p), cap(cap){}
 };
 
 class MemoryManager
@@ -19,7 +19,7 @@ class MemoryManager
 public:
 	MemoryManager(uint64_t size = GIGABYTE) : memsize(size)
 	{
-		ptr = malloc(size);
+		ptr = (int*) malloc(size);
 		memBlck.reserve(1000);
 		freeMemory = ptr;
 	}
@@ -32,7 +32,7 @@ public:
 	template<class R>
 	R * allocation(uint64_t capacity)
 	{
-		R * tmp = freeMemory;
+		R * tmp = (R*) freeMemory;
 		freeMemory += capacity * sizeof(R);
 		memBlck.emplace_back(memoryBlock(tmp, capacity));
 		return tmp;
@@ -41,8 +41,8 @@ public:
 
 
 private:
-	void * ptr;
-	void * freeMemory;
+	int * ptr;
+	int * freeMemory;
 	uint64_t memsize;
 	std::vector<memoryBlock> memBlck;
 };
